@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <style type="text/css">
+            html { height: 100% }
+            body { height: 100%; margin: 0; padding: 0 }
+            #map-canvas { height: 100% }
+        </style>
+        <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdLVWVZYFxRCooIh33OPHsl5Ia_mn-gOw&sensor=false">
+            </script>
+        <script type="text/javascript">
+            function initialize() {
+                //create styles
+                var styles = [                   
+                    {
+                        stylers: [
+                          { hue: "#FF3200" },
+                          { saturation: 0 }
+                        ]
+                    },                    
+                    {
+                        featureType: "road",
+                        elementType: "all",
+                        stylers: [
+                          { visibility: "off" }
+                        ]
+                    },
+                    {
+                        featureType: "poi",
+                        elementType: "all",
+                        stylers: [
+                            { visibility: "off" }
+                        ]
+                    },
+                    {
+                        featureType: "transit",
+                        elementType: "all",
+                        stylers: [
+                            { visibility: "off" }
+                        ]
+                    },
+                    {
+                        featureType: "landscape",
+                        elementType: "all",
+                        stylers: [
+                            { visibility: "off" }                            
+                        ]
+                    },
+                    {
+                        featureType: "water",
+                        elementType: "all",
+                        stylers: [
+                            { visibility: "off" }
+                        ]
+                    }
+                ];
+                        
+                var mapOptions = {
+                    center: new google.maps.LatLng(-6.916596,107.606792),
+                    zoom: 11
+                };
+                var map = new google.maps.Map(document.getElementById("map-canvas"),
+                                              mapOptions);
+                map.setOptions({styles: styles});
+            }
+            
+            //synchronous load
+//            google.maps.event.addDomListener(window, 'load', initialize);
+            
+            //asynchronous load
+            function loadScript() {
+                var script = document.createElement('script');
+                script.typpe = 'text/javascript';
+                script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
+      'callback=initialize';
+                document.body.appendChild(script);
+            }
+            
+            window.onload = loadScript;
+        </script>
+    </head>
+    <body>
+        <div id="map-canvas"/>
+    </body>
+</html>
